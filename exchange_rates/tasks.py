@@ -6,7 +6,7 @@ def save_exchange_rate(exchange_rate: ExchangeRateData) -> None:
     if ExchangeRate.objects.filter(
         source_currency=exchange_rate.source_currency,
         target_currency=exchange_rate.target_currency,
-        date=exchange_rate.date,
+        datetime=exchange_rate.datetime,
     ).exists():
         return
 
@@ -14,7 +14,7 @@ def save_exchange_rate(exchange_rate: ExchangeRateData) -> None:
         source_currency=exchange_rate.source_currency,
         target_currency=exchange_rate.target_currency,
         rate=exchange_rate.rate,
-        date=exchange_rate.date,
+        datetime=exchange_rate.datetime,
     )
     model.save()
 

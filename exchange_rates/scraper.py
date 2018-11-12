@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from decimal import Decimal
-from datetime import date, datetime
+from datetime import datetime
 from typing import List
 
 import feedparser
@@ -13,7 +13,7 @@ class ExchangeRate:
     source_currency: Currency
     target_currency: Currency
     rate: Decimal
-    date: date
+    datetime: datetime
 
 
 class ExchangeRateScraper(ABC):
@@ -38,7 +38,7 @@ class ECBExchangeRateScraper(ExchangeRateScraper):
                 source_currency=self.source_currency,
                 target_currency=self.target_currency,
                 rate=self._parse_rate(entry.cb_exchangerate),
-                date=datetime.fromisoformat(entry.updated).date(),
+                datetime=datetime.fromisoformat(entry.updated),
             )
             for entry in data.entries
         ]

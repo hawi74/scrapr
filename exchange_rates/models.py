@@ -13,4 +13,4 @@ class ExchangeRate(models.Model):
     source_currency = CurrencyField()
     target_currency = CurrencyField()
     rate = models.DecimalField(max_digits=12, decimal_places=6)
-    date = models.DateField()
+    datetime = models.DateTimeField()

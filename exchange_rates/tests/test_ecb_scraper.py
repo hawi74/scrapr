@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from datetime import date
+from datetime import datetime, timezone, timedelta
 
 from django.test import TestCase
 
@@ -20,36 +20,37 @@ class ExchangeRateScraperTest(TestCase):
 
         result = scraper.get_exchange_rates()
 
+        tzinfo = timezone(timedelta(seconds=3600))
         expected = [
             ExchangeRate(
                 source_currency=moneyed.PLN,
                 target_currency=moneyed.EUR,
                 rate=Decimal('4.2968'),
-                date=date(2018, 11, 12),
+                datetime=datetime(2018, 11, 12, 14, 15, tzinfo=tzinfo),
             ),
             ExchangeRate(
                 source_currency=moneyed.PLN,
                 target_currency=moneyed.EUR,
                 rate=Decimal('4.2880'),
-                date=date(2018, 11, 9),
+                datetime=datetime(2018, 11, 9, 14, 15, tzinfo=tzinfo),
             ),
             ExchangeRate(
                 source_currency=moneyed.PLN,
                 target_currency=moneyed.EUR,
                 rate=Decimal('4.2915'),
-                date=date(2018, 11, 8),
+                datetime=datetime(2018, 11, 8, 14, 15, tzinfo=tzinfo),
             ),
             ExchangeRate(
                 source_currency=moneyed.PLN,
                 target_currency=moneyed.EUR,
                 rate=Decimal('4.2940'),
-                date=date(2018, 11, 7),
+                datetime=datetime(2018, 11, 7, 14, 15, tzinfo=tzinfo),
             ),
             ExchangeRate(
                 source_currency=moneyed.PLN,
                 target_currency=moneyed.EUR,
                 rate=Decimal('4.3088'),
-                date=date(2018, 11, 6),
+                datetime=datetime(2018, 11, 6, 14, 15, tzinfo=tzinfo),
             ),
         ]
 
