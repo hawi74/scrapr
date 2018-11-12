@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_filters',
     'rest_framework',
 
     'exchange_rates',
@@ -134,4 +135,10 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'exchange_rates.tasks.scrape_all_exchange_rates',
         'schedule': timedelta(minutes=1),
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
 }
