@@ -2,7 +2,9 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from decimal import Decimal
 from datetime import date
+from typing import List
 
+import feedparser
 from moneyed import Currency
 
 
@@ -17,5 +19,5 @@ class ExchangeRate:
 class ExchangeRateScraper(ABC):
 
     @abstractmethod
-    def get_exchange_rate(self) -> ExchangeRate:
+    def get_exchange_rates(self) -> List[ExchangeRate]:
         ...
