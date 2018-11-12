@@ -13,3 +13,17 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  celery:
+    build:
+      context: .
+      dockerfile: images/django/Dockerfile
+    command: celery -A scrapr worker -l info -B
+    depends_on:
+      - db
+      - broker
+    volumes:
+      - .:/code
+  broker:
+    image: rabbitmq:3.7.8
+    environment:
+      - RABBITMQ_DEFAULT_VHOST=celery
