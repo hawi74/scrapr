@@ -6,9 +6,9 @@ from django.test import TestCase
 
 import moneyed
 
-from .models import ExchangeRate
-from .scraper import ExchangeRateScraper, ExchangeRate as ExchangeRateData
-from .tasks import scrape_exchange_rates
+from ..models import ExchangeRate
+from ..scraper import ExchangeRateScraper, ExchangeRate as ExchangeRateData
+from ..tasks import scrape_exchange_rates
 
 
 class DummyExchangeRateScraper(ExchangeRateScraper):
@@ -41,7 +41,7 @@ exchange_rate_scraper = DummyExchangeRateScraper()
 
 class ExchangeRateScraperTest(TestCase):
 
-    def test_scrap_exchange_rate(self):
+    def test_scrape_exchange_rate(self):
         scrape_exchange_rates(exchange_rate_scraper)
 
         model = ExchangeRate.objects.get(source_currency=moneyed.PLN)
